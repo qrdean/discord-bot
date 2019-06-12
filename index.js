@@ -1,12 +1,12 @@
-const fs = require('fs')
-const Discord = require('discord.js')
-const { prefix } = require('./config.json')
-const { token } = require('./.config.json')
+import { readdirSync } from 'fs'
+import { Client, Collection } from 'discord.js'
+import { prefix } from './config.json'
+import { token } from './.config.json'
 
-const client = new Discord.Client()
-client.commands = new Discord.Collection()
-const cooldowns = new Discord.Collection()
-const commandFiles = fs.readdirSync('./commands')
+const client = new Client()
+client.commands = new Collection()
+const cooldowns = new Collection()
+const commandFiles = readdirSync('./commands')
 
 commandFiles.map(file => {
   const command = require(`./commands/${file}`)
@@ -22,7 +22,9 @@ client.on('ready', () => {
 
 client.on('message', message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return
-
+  // const roleNames = message.guild.roles.map(role => {
+  //   role.name.toLowerCase();
+  // });
   const args = message.content.slice(prefix.length).split(/ +/)
   const commandName = args.shift().toLowerCase()
 
@@ -51,7 +53,7 @@ client.on('message', message => {
   }
 
   if (!cooldowns.has(command.name)) {
-    cooldowns.set(command.name, new Discord.Collection())
+    cooldowns.set(command.name, new Collection())
   }
 
   const now = Date.now()

@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "run:dev": "node -r esm index.js",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -12,7 +13,8 @@
     ]
   },
   "dependencies": {
-    "discord.js": "^11.3.2"
+    "discord.js": "^11.3.2",
+    "esm": "^3.2.25"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
