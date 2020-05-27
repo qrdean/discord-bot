@@ -8,7 +8,7 @@ client.commands = new Collection()
 const cooldowns = new Collection()
 const commandFiles = readdirSync('./commands')
 
-commandFiles.map(file => {
+commandFiles.map((file) => {
   const command = require(`./commands/${file}`)
 
   // set a new item in the Collection
@@ -20,7 +20,7 @@ client.on('ready', () => {
   console.log('Ready!')
 })
 
-client.on('message', message => {
+client.on('message', (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return
   // const roleNames = message.guild.roles.map(role => {
   //   role.name.toLowerCase();
@@ -31,7 +31,7 @@ client.on('message', message => {
   const command =
     client.commands.get(commandName) ||
     client.commands.find(
-      cmd => cmd.aliases && cmd.aliases.includes(commandName)
+      (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
     )
 
   if (!command) return
@@ -44,9 +44,7 @@ client.on('message', message => {
     let reply = `You didn't provide any arguments. ${message.author}!`
 
     if (command.usage) {
-      reply += `\nThe proper usage would be: \`${prefix}${command.name} ${
-        command.usage
-      }\``
+      reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``
     }
 
     return message.channel.send(reply)

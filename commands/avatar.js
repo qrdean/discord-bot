@@ -8,7 +8,7 @@ export function execute(message) {
       `Your avatar: ${message.author.displayAvatarURL}`
     )
   }
-  const avatarList = message.mentions.users.map(user => {
+  const avatarList = message.mentions.users.map((user) => {
     return `${user.username}'s avatar: ${user.displayAvatarURL}`
   })
   // send the entire array of strings as a message
