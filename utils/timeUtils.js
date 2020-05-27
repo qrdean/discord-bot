@@ -25,12 +25,10 @@ export function handleInCase(object) {
 }
 
 export function handleAtCase(time, date) {
-    return
+  return
 }
 
-export function handleOnCase(date, time) {
-
-}
+export function handleOnCase(date, time) {}
 
 /**
  * Takes a string and returns it in a format momentjs expects
